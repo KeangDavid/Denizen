@@ -449,25 +449,7 @@ public class Denizen extends JavaPlugin {
                 PlayerFlagHandler.cleanCache();
             }
         }.runTaskTimer(this, 100, 20 * 60);
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                if (!StrongWarning.recentWarnings.isEmpty()) {
-                    StringBuilder warnText = new StringBuilder();
-                    warnText.append(ChatColor.YELLOW).append("[Denizen] ").append(ChatColor.RED).append("Recent strong system warnings, scripters need to address ASAP (check earlier console logs for details):");
-                    for (StrongWarning warning : StrongWarning.recentWarnings) {
-                        warnText.append("\n- ").append(warning.message);
-                    }
-                    StrongWarning.recentWarnings.clear();
-                    Bukkit.getConsoleSender().sendMessage(warnText.toString());
-                    for (Player player : Bukkit.getOnlinePlayers()) {
-                        if (player.isOp()) {
-                            player.sendMessage(warnText.toString());
-                        }
-                    }
-                }
-            }
-        }.runTaskTimer(this, 100, 20 * 60 * 5);
+        
     }
 
     public boolean hasDisabled = false;
